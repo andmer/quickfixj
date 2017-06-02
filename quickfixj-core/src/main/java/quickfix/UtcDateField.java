@@ -19,16 +19,31 @@
 
 package quickfix;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 /**
- * Used to decide when to login and out of FIX sessions
+ * A LocalDate-valued message field with up to nanosecond precision.
  */
-public interface SessionSchedule {
+public class UtcDateField extends Field<LocalDate> {
 
-    boolean isSameSession(Calendar time1, Calendar time2);
+    protected UtcDateField(int field) {
+        super(field, LocalDate.now());
+    }
 
-    boolean isNonStopSession();
+    protected UtcDateField(int field, LocalDate data) {
+        super(field, data);
+    }
 
-    boolean isSessionTime();
+    public void setValue(LocalDate value) {
+        setObject(value);
+    }
+
+    public LocalDate getValue() {
+        return getObject();
+    }
+
+    public boolean valueEquals(LocalDate value) {
+        return getValue().equals(value);
+    }
+    
 }

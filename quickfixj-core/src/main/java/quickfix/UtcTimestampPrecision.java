@@ -19,16 +19,10 @@
 
 package quickfix;
 
-import java.util.Calendar;
-
 /**
- * Used to decide when to login and out of FIX sessions
+ *
+ * @author chrjohn
  */
-public interface SessionSchedule {
-
-    boolean isSameSession(Calendar time1, Calendar time2);
-
-    boolean isNonStopSession();
-
-    boolean isSessionTime();
+public enum UtcTimestampPrecision {
+    SECONDS, MILLIS, MICROS, NANOS
 }
